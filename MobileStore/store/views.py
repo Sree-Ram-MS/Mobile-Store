@@ -28,3 +28,11 @@ class AddProduct(CreateView):
 
 class Profile(TemplateView):
     template_name="profile.html"
+
+
+class MyProduct(TemplateView):
+    template_name="myproduct.html"
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context["products"]=Products.objects.filter(user=self.request.user)
+        return context

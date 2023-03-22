@@ -33,7 +33,7 @@
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href=""><span class="glyphicon glyphicon-shopping-cart"></span> My Products<span class="badge"></span></a></li>
+                        <li><a href="{% url 'MyPro' %}"><span class="glyphicon glyphicon-shopping-cart"></span> My Products</a></li>
                         <li><a href="{% url 'AddProduct' %}"><span class="glyphicon glyphicon-plus"></span> Add Product</a></li>
                         <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                         <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
