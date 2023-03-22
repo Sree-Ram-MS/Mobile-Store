@@ -28,8 +28,8 @@ class Homepage(FormView):
             user=authenticate(req,username=un,password=pw,usertype=ut)
             if user:
                 login(req,user)
-                if ut=="Store":
-                    return redirect('store')
+                if req.user.usertype=="Store":
+                    return redirect("Dealer")
                 else:
                     login(req,user)
                     return redirect("Customer")
