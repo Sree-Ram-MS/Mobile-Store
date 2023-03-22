@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "account",
-    "customer"
+    "customer",
+    "store"
 ]
 
 MIDDLEWARE = [
@@ -126,6 +127,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL="account.CustUser"
 
-# CSRF_TRUSTED_ORIGINS = [
-#     ''
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://say-my-name-heisenberg-scaling-guacamole-66prg6qqj6vfx49w-8000.preview.app.github.dev'
+]
