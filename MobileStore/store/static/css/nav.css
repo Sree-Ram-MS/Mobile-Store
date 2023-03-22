@@ -1,0 +1,9 @@
+.circle { border-top-left-radius: 50% 50%; border-top-right-radius: 50% 50%; border-bottom-right-radius: 50% 50%; border-bottom-left-radius: 50% 50%; border:2px solid rgb(50,205,50); box-shadow: inset 0px 0px 0px 8px white;}
+    
+.material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 500,
+        'GRAD' 256,
+        'opsz' 48
+    }

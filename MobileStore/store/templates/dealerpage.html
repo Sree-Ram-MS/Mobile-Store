@@ -1,11 +1,26 @@
-{% extends 'nav.html' %}
+{% extends 'Storenav.html' %}
 {% block nav %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/userpage.css' %}" />
 
-<h1>Add your products here</h1>
-      <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class="btn btn-outline-primary">add</button>
-      </form>
+<div class="row">
+      {% for product in products %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{ product.Mobile_pic.url }}" width="400px" height=>
+            <div class="box-element product">
+                <h3><strong>{{ product.Name }}</strong></h3>
+                <h6><strong>RAM:{{ product.RAM }}GB</strong></h6>
+                <h6><strong>ROM:{{ product.ROM }} GB</strong></h6>
+                <h6><strong>Processor:{{ product.Processer }}</strong></h6>
+                <h4 style="display: inline-block; float: right"><strong>₹{{ product.Prize|floatformat:2 }}</strong></h4>
+                <h6><strong>Camera:{{ product.Camera }}</strong></h6>
+                <h6><strong>Battery:{{ product.Battery }} Mah</strong></h6>
+                <button class="btn  col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#ff9f00; color:#fff;font-size:1em;"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;ADD TO CART</button>
+                <button class="btn col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#fb641b; color:#fff;font-size:1em;"><i class="fa fa-bolt" aria-hidden="true" style="font-size:1.2em;"></i> BUY NOW</button>
+            </div>
+        </div>
+      {% endfor product in products %}
+    </div>
+
 
 {% endblock nav %}

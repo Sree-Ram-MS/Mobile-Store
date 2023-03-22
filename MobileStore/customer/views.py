@@ -9,3 +9,4 @@ class CustHome(TemplateView):
         context=super().get_context_data(**kwargs)
         context["products"]=Products.objects.all()
         return context
+    

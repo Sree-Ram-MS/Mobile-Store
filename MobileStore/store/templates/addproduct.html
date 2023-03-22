@@ -1,0 +1,11 @@
+{% extends 'Storenav.html' %}
+{% block nav %}
+
+<h1>Add your products here</h1>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-warning">add</button>
+      </form>
+
+{% endblock nav %}

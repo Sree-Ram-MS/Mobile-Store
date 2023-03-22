@@ -1,45 +1,22 @@
 {% extends 'nav.html' %}
 {% block nav %}
-<script>
-.thumbnail{
-	width: 100%;
-	height: 200px;
-	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
-    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
-    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
-}
-.product{
-	border-radius: 0 0 4px 4px;
-}
-.btn{
-	border-radius: 0;
-}
-.box-element{
-	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
-	background-color: #fff;
-	border-radius: 4px;
-	padding: 10px;
-}
-.col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12{
-	margin-top: 10px;
-}
-</script>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/userpage.css' %}" />
 
 <div class="row">
       {% for product in products %}
         <div class="col-lg-4">
-            <img class="thumbnail" src="{{ product.Mobile_pic.url }}" width="450px">
+            <img class="thumbnail" src="{{ product.Mobile_pic.url }}" width="400px" height=>
             <div class="box-element product">
                 <h3><strong>{{ product.Name }}</strong></h3>
                 <h6><strong>RAM:{{ product.RAM }}GB</strong></h6>
                 <h6><strong>ROM:{{ product.ROM }} GB</strong></h6>
                 <h6><strong>Processor:{{ product.Processer }}</strong></h6>
+                <h4 style="display: inline-block; float: right"><strong>₹{{ product.Prize|floatformat:2 }}</strong></h4>
                 <h6><strong>Camera:{{ product.Camera }}</strong></h6>
                 <h6><strong>Battery:{{ product.Battery }} Mah</strong></h6>
-                <hr>
-                <button data-product={{ product.id }} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-                <a class="btn btn-outline-primary" href="#">View</a>
-		        <h4 style="display: inline-block; float: right"><strong>₹{{ product.Prize|floatformat:2 }}</strong></h4>
+                <button class="btn  col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#ff9f00; color:#fff;font-size:1em;"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;ADD TO CART</button>
+                <button class="btn col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#fb641b; color:#fff;font-size:1em;"><i class="fa fa-bolt" aria-hidden="true" style="font-size:1.2em;"></i> BUY NOW</button>
             </div>
         </div>
       {% endfor product in products %}
