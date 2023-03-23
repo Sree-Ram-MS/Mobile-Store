@@ -6,6 +6,18 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/del.css' %}" />
 
 
+<div class="row">
+      
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{ object.Mobile_pic.url }}" width="400px" height=>
+            <div class="box-element product">
+                <h4 style="display: inline-block; float:right"><strong>₹{{ product.Prize|floatformat:2 }}</strong></h4>
+                <h2><strong>{{ product.Name }}</strong></h2>
+            </div>
+        </div>
+    </div>
+
+
 <div class="text-center">
     <a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>
 </div>
