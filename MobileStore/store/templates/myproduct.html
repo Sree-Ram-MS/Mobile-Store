@@ -10,8 +10,13 @@
             <div class="box-element product">
                 <h4 style="display: inline-block; float:right"><strong>₹{{ product.Prize|floatformat:2 }}</strong></h4>
                 <h2><strong>{{ product.Name }}</strong></h2>
+                <a href="{% url 'Update' product.id %}">
                 <button class="btn  col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#24c200; color:#fff;font-size:1em;"><span class="glyphicon glyphicon-edit"></span>&nbsp;UPDATE</button>
-                <a href="{% url 'Remove' product.id %}"><button class="btn col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#ff0000; color:#fff;font-size:1em;"><i class="glyphicon glyphicon-remove" style="font-size:1.2em;"></i> REMOVE</button></div></a></a>           
+            </a>
+                <a href="{% url 'Remove' product.id %}">
+                    <button class="btn col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#ff0000; color:#fff;font-size:1em;"><i class="glyphicon glyphicon-remove" style="font-size:1.2em;"></i> REMOVE</button>
+                </a>
+            </div>          
             </div>
         </div>
         {% endfor product in products %}

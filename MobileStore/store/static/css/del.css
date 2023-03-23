@@ -93,3 +93,7 @@
 .modal-confirm .btn-danger:focus {
     background: #ee3535;
 }
+
+.button3 {
+    border-radius: 8px;
+}

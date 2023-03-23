@@ -33,8 +33,9 @@
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href=""><span class="glyphicon glyphicon-shopping-cart"></span> Cart<span class="badge"></span></a></li>
-                        <li><a href=""><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                        <li><a href="{% url 'MyCart' %}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart<span class="badge"></span></a></li>
+                        <li><a href=""><span class="glyphicon glyphicon-usd"></span> Purchased</a></li>
+                        <li><a href=""><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                       <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </div>

@@ -45,7 +45,7 @@ class UpdateProduct(UpdateView):
     form_class=ProductForm
     model=Products
     template_name='addproduct.html'
-    success_url=reverse_lazy('AddProduct')
+    success_url=reverse_lazy('MyPro')
 
 
 class RemoveProduct(DeleteView):

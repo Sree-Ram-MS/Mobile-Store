@@ -6,21 +6,26 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/del.css' %}" />
 
 
-<div class="row">
-      
-        <div class="col-lg-4">
+
+    <div style="justify-content: center;">
+        <div class="col-lg-4" >
             <img class="thumbnail" src="{{ object.Mobile_pic.url }}" width="400px" height=>
             <div class="box-element product">
-                <h4 style="display: inline-block; float:right"><strong>₹{{ product.Prize|floatformat:2 }}</strong></h4>
-                <h2><strong>{{ product.Name }}</strong></h2>
+                <h4 style="display: inline-block; float:right"><strong>₹{{ object.Prize|floatformat:2 }}</strong></h4>
+                <h2><strong>RAM:{{ object.RAM }}</strong></h2>
+                <h2><strong>ROM:{{ object.ROM }}</strong></h2>
+                <h2><strong>CAMERS:{{ object.Camera }}</strong></h2>
+                <h2><strong>Battery:{{ object.Battery }}</strong></h2>
+                <div class="text-center">
+                    <button class="button3 btn btn-danger" style="border-radius: 8px;"><a href="#myModal" style="color:#ffffff" class="trigger-btn" data-toggle="modal">Confirm Delete</a></button>
+                </div>
             </div>
         </div>
     </div>
 
 
-<div class="text-center">
-    <a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>
-</div>
+
+
 
 
   <div id="myModal" class="modal fade">
