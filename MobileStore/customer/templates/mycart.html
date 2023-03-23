@@ -2,22 +2,34 @@
 {% block nav %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/userpage.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/quantity.css' %}" />
+<link rel="stylesheet"  href="{% static 'js/quantity.js' %}" />
 
 <div class="row">
       {% for product in products %}
         <div class="col-lg-4">
             <img class="thumbnail" src="{{ product.mobile.Mobile_pic.url }}" width="400px" height=>
             <div class="box-element product">
-                <h3><strong>{{ product.Name }}</strong></h3>
+                <h3><strong>{{ product.mobile.Name }}</strong></h3>
                 <h6><strong>RAM:{{ product.mobile.RAM }}GB</strong></h6>
                 <h6><strong>ROM:{{ product.mobile.ROM }} GB</strong></h6>
                 <h6><strong>Processor:{{ product.mobile.Processer }}</strong></h6>
-                <h4 style="display: inline-block; float: right"><strong>₹{{ product.Prize|floatformat:2 }}</strong></h4>
+                <h4 style="display: inline-block; float: right"><strong>₹{{ product.mobile.Prize|floatformat:2 }}</strong></h4>
                 <h6><strong>Camera:{{ product.mobile.Camera }}</strong></h6>
                 <h6><strong>Battery:{{ product.mobile.Battery }} Mah</strong></h6>
-                <a href="{% url 'DelCart' product.mobile.id %}">
-                    <button class="btn col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#ff0000; color:#fff;font-size:1em;"><i class="glyphicon glyphicon-remove" style="font-size:1.2em;"></i> REMOVE FROM CART</button>
+                <a href="{% url 'DelCart' product.id %}">
+                    <button class="btn col-sm- col-sm-offset-3 btn-lg" style="background-color:#ff0000; color:#fff;font-size:1em; border-radius:15px;"><i class="glyphicon glyphicon-remove" style="font-size:1.2em;"></i> REMOVE FROM CART</button>
                 </a>
+
+                <div class="container">            
+                        <button onclick="increment()">+</button>
+                        <h2 id="counting"></h2>
+                        <button onclick="decrement()">-</button>        
+                    </div>
+              
+                
+                 
+
             </div>
         </div>
       {% endfor product in products %}

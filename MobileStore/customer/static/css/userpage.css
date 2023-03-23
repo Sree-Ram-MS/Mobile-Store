@@ -10,7 +10,7 @@
 	border-radius: 0 0 4px 4px;
 }
 .btn{
-	border-radius: 0;
+	border-radius: 15px;
 }
 .box-element{
 	box-shadow:hsl(0, 0%, 80%) 0 0 16px;

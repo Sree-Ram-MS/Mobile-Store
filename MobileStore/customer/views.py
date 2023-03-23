@@ -30,7 +30,11 @@ def addcart(request,*args,**kwargs):
 
 def delcart(request,*args,**kwargs):
     id=kwargs.get("pid")
-    mobile=Products.objects.get(id=id)
     user=request.user
-    mobile.delete()
+    Cart.objects.filter(id=id).delete()
     return redirect('MyCart')
+
+# obj1 = Person.objects.get(id=1)
+# obj1.delete()
+# # query2
+# Person.objects.filter(id=1).delete()
