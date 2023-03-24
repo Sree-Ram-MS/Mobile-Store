@@ -12,17 +12,82 @@
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
 
-    <form action="" method="post" enctype="multipart/form-data">
+<div class="container py-1">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
 
-        {% csrf_token %}
-        {{ form.as_p}}
+<div class="col-md-10 offset-md-1">
+<div class="card bg-light">
+  <div class="card card-header text-primary">
+  <span class="anchor" id="formComplex"></span>
+  <h3>Sign Up </h3>
+  </div>
+  <!-- form complex example -->
+  <div class="form-row mt-4 ml-3 mr-md-3">
+      
+      <div class="col-sm-6 pb-3">
+          <label for="exampleFirst">First Name</label>
+          <input type="text" class="form-control " name="{{ form.first_name.html_name }}" >
+      </div>
+      <div class="col-sm-6 pb-3">
+          <label for="exampleLast">Last Name</label>
+          <input type="text" class="form-control" name="{{ form.last_name.html_name }}">
+      </div>
+      <div class="col-sm-6 pb-3">
+          <label for="exampleFirst">Email</label>
+          <input type="email" class="form-control" name="{{ form.email.html_name }}">
+      </div>
+      <div class="col-sm-6 pb-3">
+          <label for="exampleLast">Phone</label>
+          <input type="tel"   class="form-control" name="{{ form.phone.html_name }}">
+      </div>
 
-        <button> submit</button>
-    </form>
-  </body>
+      <div class="col-md-12 pb-3">
+        <label for="exampleMessage">Address</label>
+        <textarea class="form-control" name="{{ form.address.html_name }}" id="" rows="3"></textarea>
+      </div>
+
+      <div class="col-sm-6 pb-3">
+          <label for="exampleCity">Username</label>
+          <input type="text" class="form-control" name="{{ form.username.html_name }}">
+      </div>
+      <div class="col-sm-3 pb-3">
+        <label for="exampleSt">Usertype</label>
+        <select name="usertype" id="id_usertype" class="form-control">
+          <option value="Store">Store</option>
+          <option value="Customer" selected="">Customer</option>
+        </select>
+      </div>
+      <div class="col-sm-3 pb-3">
+          <label for="exampleCity">Profile</label>
+          <input type="file"  name="{{ form.image.html_name }}">
+      </div>
+            
+        <div class="col-sm-6 pb-3">
+          <label for="exampleFirst">Password</label>
+          <input type="password" class="form-control" name="{{ form.password1.html_name }}">
+      </div>
+      <div class="col-sm-6 pb-3">
+          <label for="exampleLast">Confirm Password</label>
+          <input type="password" class="form-control" name="{{ form.password2.html_name }}">
+      </div>
+    </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-info btn-lg ">Register</button>
+    </div>
+    <label for="html" class='text-center'>
+      <span ><a href="{% url 'Homepage' %}" >Have an account? Log in</span></a>
+    </label>
+
+</form>
+
+</body>
 </html>

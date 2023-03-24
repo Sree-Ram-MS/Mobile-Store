@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from django.views.generic import TemplateView
+from django.contrib.auth.views import PasswordChangeView
 from store.models import Products
 from .models import Cart
+from django.urls import reverse_lazy
 
 # Create your views here.
 # Home page for customer
@@ -12,6 +14,10 @@ class CustHome(TemplateView):
         context["products"]=Products.objects.all()
         return context
     
+
+class CProfile(TemplateView):
+    template_name="cprofile.html"
+
 # My cart section
 
 class MyCart(TemplateView):
@@ -34,7 +40,16 @@ def delcart(request,*args,**kwargs):
     Cart.objects.filter(id=id).delete()
     return redirect('MyCart')
 
-# obj1 = Person.objects.get(id=1)
-# obj1.delete()
-# # query2
-# Person.objects.filter(id=1).delete()
+class Puchase(TemplateView):
+    template_name="purchase.html"
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context["order"]=Cart.objects.filter(user=self.request.user)
+        return context
+    
+
+#  change password
+
+class ChangePassword(PasswordChangeView):
+    template_name = 'cchangepass.html'
+    success_url = reverse_lazy('Customer')    

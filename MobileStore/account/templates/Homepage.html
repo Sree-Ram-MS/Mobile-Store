@@ -15,22 +15,56 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/Home.css' %}">
   </head>
   <body>
 
-    <div class="container">
-      <h1>SIGN IN</h1>
-      <form action="" method="post">
-      {% csrf_token %}
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" placeholder="Enter your username">
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" placeholder="Enter your password">
-      <input type="submit" value="Log In">
-      </form>
-      </div>
-   <a href="{% url 'Reg' %}" >Reg</a>
-    
+<div class="container py-5">
+  <div class="row">
+  <div class="col-md-12">
+              
+    <div class="row">
+                  
+      <div class="col-md-7 offset-md-1">
+          <span class="anchor" id="formChangePassword"></span>
+   
+            <div class="col-md-10 offset-md-3">
+              <span class="anchor" id="formLogin"></span>
+
+        <!-- form card login with validation feedback -->
+                      <div class="card card-outline-secondary">
+                          <div class="card-header text-center">
+                              <h3 class="mb-0 float-left">Login</h3>
+                          </div>
+                          <div class="card-body">
+                              <form class="form" role="form" autocomplete="off" id="loginForm" novalidate="" method="POST">
+                                {% csrf_token %}
+                                  <div class="form-group">
+                                      <label for="username">Username</label>
+                                      <input type="text" class="form-control" name="{{ form.username.html_name }}"  required="" >
+                                      <div class="invalid-feedback">Please enter your username or email</div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label>Password</label>
+                                      <input type="password" class="form-control"  required="" name="{{ form.password.html_name }}" autocomplete="new-password">
+                                      <div class="invalid-feedback">Please enter a password</div>
+                                  </div>
+                                  
+                                  <div class="text-center">
+                                  <button type="submit" class="btn btn-info btn-lg text-center" >Login</button>
+                                  </div>
+
+                                  <div class=" text-center">
+                                    <span ><a href="{% url 'Reg' %}" >Don't have an account? Sign up</span></a>
+                                  </div>
+                          
+                              </form>
+                          </div>
+                          <!--/card-body-->
+                      </div>
+                      <!-- /form card login -->
+                    </div>
+    </div>
+</div>
   </body>
 </html>
+
