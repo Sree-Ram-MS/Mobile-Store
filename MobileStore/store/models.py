@@ -12,3 +12,4 @@ class Products(models.Model):
     Processer=models.CharField(max_length=100,null=True)
     Camera=models.CharField(max_length=100,null=True)
     user=models.ForeignKey(CustUser,on_delete=models.CASCADE,related_name="m_store")
+    # quantity = models.PositiveIntegerField(default=0)

@@ -20,12 +20,10 @@
                 <a href="{% url 'DelCart' product.id %}">
                     <button class="btn col-sm-5 col-sm-offset-1 btn-lg" style="background-color:#ff0000; color:#fff;font-size:1em; border-radius:12px;"><i class="glyphicon glyphicon-remove" style="font-size:1.2em;"></i>  REMOVE FROM CART</button>
                 </a>
+                <a href="{% url 'Buy' product.id %}" >
                 <button class="btn col-sm-4 col-sm-offset-1 btn-lg " style="background-color:#fb641b; color:#fff;font-size:1em;"><i class="glyphicon glyphicon-tag" style="font-size:1.2em;"> </i>  BUY NOW</button>
-                
+                </a>
               
-                
-                 
-
             </div>
         </div>
       {% endfor product in products %}

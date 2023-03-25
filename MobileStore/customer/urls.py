@@ -9,5 +9,8 @@ urlpatterns = [
     path('delcart/<int:pid>',delcart,name='DelCart'),
     path('purchase/',Puchase.as_view(),name='Purchase'),
 
+    path('Buy/<int:pid>',BuyNow.as_view(),name='Buy'),
+
+
     path('change/',ChangePassword.as_view(),name='Cpass'),
 ]

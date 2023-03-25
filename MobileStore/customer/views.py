@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.views import PasswordChangeView
+from account.models import CustUser
 from store.models import Products
 from .models import Cart
 from django.urls import reverse_lazy
@@ -53,3 +54,14 @@ class Puchase(TemplateView):
 class ChangePassword(PasswordChangeView):
     template_name = 'cchangepass.html'
     success_url = reverse_lazy('Customer')    
+
+
+class BuyNow(TemplateView):
+    template_name="buynow.html"
+    def get_context_data(self, **kwargs):
+        id=kwargs.get('pid')
+        context=super().get_context_data(**kwargs)
+        context["buy"]=Products.objects.get(id=id)
+        return context
+    
+

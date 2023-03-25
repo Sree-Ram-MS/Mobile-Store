@@ -1,30 +1,36 @@
 {% extends 'nav.html' %}
 {% block nav %}
 {% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'css/userpage.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/card.css' %}" />
 
-<div class="row">
-      {% for item in order %}
-        <div class="col-lg-4">
-            <img class="thumbnail" src="{{ item.mobile.Mobile_pic.url }}" width="400px" height=>
-            <div class="box-element item">
-                <h3><strong>{{ item.mobile.Name }}</strong></h3>
-                <h6><strong>RAM:{{ item.mobile.RAM }}GB</strong></h6>
+    <div class="container" style="margin-top:50px; margin-left:25px">
+        <div class="row">
+            {% for item in order %}
+            <div class="col-md-7">
+                <div class="card-sl">
+                    <div class="card-image">
+                        <img
+                            src="{{ item.mobile.Mobile_pic.url }}" />
+                    </div>
+
+                    <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+                    <div class="card-heading">
+                       <strong><h2 class="card-title">{{ item.mobile.Name }}</h2></strong>
+                    </div>
+                    <div class="card-text">
+                        <h6><strong>RAM:{{ item.mobile.RAM }}GB</strong></h6>
                 <h6><strong>ROM:{{ item.mobile.ROM }} GB</strong></h6>
                 <h6><strong>Processor:{{ item.mobile.Processer }}</strong></h6>
                 <h4 style="display: inline-block; float: right"><strong>₹{{ item.mobile.Prize|floatformat:2 }}</strong></h4>
                 <h6><strong>Camera:{{ item.mobile.Camera }}</strong></h6>
                 <h6><strong>Battery:{{ item.mobile.Battery }} Mah</strong></h6>
-                <a href="#">
-                    <button class="btn col-sm-5 col-sm-offset-1 btn-lg" style="background-color:#ff0000; color:#fff;font-size:1em; border-radius:12px;"><i class="glyphicon glyphicon-remove" style="font-size:1.2em;"></i>  Cancel Order</button>
-                </a>
-                
-                
-                 
-
+               
+                    </div>
+                    <a href="#" class="card-button "><i class="fa fa-bolt">  Buy Now</i></a>
+                </div>
             </div>
-        </div>
-      {% endfor item in order %}
-    </div>
-
+            {% endfor item in order %}
+        </div>  
 {% endblock nav %}
