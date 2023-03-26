@@ -11,6 +11,9 @@ urlpatterns = [
 
     path('Buy/<int:pid>',BuyNow.as_view(),name='Buy'),
 
+    path('buyitem/<int:pid>',buyitem,name='BuyItem'),
+    path('review/<int:pid>',addreview,name='AddRev'),
+
 
     path('change/',ChangePassword.as_view(),name='Cpass'),
 ]

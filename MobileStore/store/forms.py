@@ -7,3 +7,7 @@ class ProductForm(forms.ModelForm):
         exclude=[
             'user'
         ]
+
+def clean(self):
+    cleaned_data= super().clean()
+    prize=cleaned_data.get("prize")
