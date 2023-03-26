@@ -41,7 +41,7 @@
                             
                             <input type="number" name="quantity" id="quantity" value="1">
                             <p>Price: <span id="price">{{ buy.Prize }}</span></p>
-                            <form action="{% url 'buyitem' data.id %}" method="post">
+                            <form action="{% url 'BuyItem' buy.id %}" method="post">
                                 {% csrf_token %}
                                 <table class="table">
                                   {{form.as_p}}

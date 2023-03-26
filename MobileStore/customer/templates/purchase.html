@@ -26,9 +26,11 @@
                 <h4 style="display: inline-block; float: right"><strong>₹{{ item.mobile.Prize|floatformat:2 }}</strong></h4>
                 <h6><strong>Camera:{{ item.mobile.Camera }}</strong></h6>
                 <h6><strong>Battery:{{ item.mobile.Battery }} Mah</strong></h6>
+                <br>
+                <br>
+                <h6><strong>Item Delivey at:{{ item.post }} {{ item.city }}</strong></h6>
                
                     </div>
-                    <a href="#" class="card-button "><i class="fa fa-bolt">  Buy Now</i></a>
                 </div>
             </div>
             {% endfor item in order %}

@@ -14,6 +14,7 @@ class CustHome(TemplateView):
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         context["products"]=Products.objects.all()
+        context["cart"]=Cart.objects.filter(status="carted")
         context["form"]=ReviewForm()
         context['review']=Review.objects.all()
         context['pst']=Purchase.objects.filter(user=self.request.user)
@@ -36,12 +37,8 @@ def addcart(request,*args,**kwargs):
     id=kwargs.get("pid")
     mobile=Products.objects.get(id=id)
     user=request.user
-    if Cart.objects.filter(status="carted"):
-        # messages.success(request,"alredy carted")
-        return redirect('Customer')
-    else:
-        Cart.objects.create(mobile=mobile,user=user,status="carted")
-        return redirect('Customer')
+    Cart.objects.create(mobile=mobile,user=user,status="carted")
+    return redirect('Customer')
 
 def delcart(request,*args,**kwargs):
     id=kwargs.get("pid")
@@ -62,7 +59,7 @@ class Puchase(TemplateView):
     template_name="purchase.html"
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
-        context["order"]=Cart.objects.filter(user=self.request.user)
+        context["order"]=Purchase.objects.filter(user=self.request.user)
         return context
     
 
@@ -91,7 +88,7 @@ def buyitem(request,*args,**kwargs):
     pin=request.POST.get('pin')
     quantity=request.POST.get('quantity')
     Purchase.objects.create(city=city,post=post,pin=pin,quantity=quantity,mobile=mobile,user=user)
-    ucart=Cart.objects.get(mobile=id)
+    ucart=Cart.objects.get(mobile_id=id)
     ucart.status="purchased"
     ucart.save()
     return redirect('Customer')
