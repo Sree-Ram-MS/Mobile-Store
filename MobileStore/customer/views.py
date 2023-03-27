@@ -7,36 +7,7 @@ from .models import *
 from .forms import *
 from django.urls import reverse_lazy
 
-from django.shortcuts import get_object_or_404
 
-from django.contrib.sessions.backends.db import SessionStore
-from .models import Cart
-
-def create_cart(request):
-    # Create a new cart object
-    cart = Cart.objects.create()
-
-    # Get the current session
-    session = SessionStore(request.session.session_key)
-
-    # Store the cart ID in the session
-    session['cart_id'] = cart.id
-    session.save()
-    
-def get_cart_id(request):
-    # Get the current session
-    session = SessionStore(request.session.session_key)
-
-    # Get the cart ID from the session
-    cart_id = session.get('cart_id')
-
-    return cart_id
-
-
-
-def product_id(request, slug, id):
-    product=get_object_or_404(Cart, mobile_id=id, slug=slug) 
-    return render(request,'userpage.html',{'pid':pid})
 
 # Create your views here.
 # Home page for customer
@@ -120,7 +91,7 @@ def buyitem(request,*args,**kwargs):
     pin=request.POST.get('pin')
     quantity=request.POST.get('quantity')
     Purchase.objects.create(city=city,post=post,pin=pin,quantity=quantity,mobile=mobile,user=user)
-    ucart=Cart.objects.get(mobile_id=id)
+    ucart=Cart.objects.get(mobile=id)
     ucart.status="purchased"
     ucart.save()
     return redirect('Customer')
