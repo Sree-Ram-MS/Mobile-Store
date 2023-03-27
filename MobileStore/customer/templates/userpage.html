@@ -5,28 +5,20 @@
 {% if messages %}
     {% for i in messages %}
         {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}  
-        <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{i}}
-        </div>
+        <div class="alert alert_success"> <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button> <strong>{{i}}</strong> </div>
+
         {% endif %}
         {% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-        <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{i}}
-        </div>
+        <div class="alert alert_error"> <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button> <strong>{{i}}</strong> </div>
+
         {% endif %}
         {% if i.level == DEFAULT_MESSAGE_LEVELS.INFO %}
-        <div class="alert alert-info alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{i}}
-        </div>
+        <div class="alert alert_info"> <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button> <strong>{{i}}</strong> </div>
+
         {% endif %}
         {% if i.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-        <div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{i}}
-        </div>
+        <div class="alert alert_warning"> <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button> <strong>{{i}}</strong> </div>
+
         {% endif %}
     {% endfor %}
 {% endif %}
@@ -34,6 +26,7 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/userpage.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'css/cmt.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/msg.css' %}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="row">
