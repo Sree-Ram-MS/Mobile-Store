@@ -34,8 +34,10 @@ class Homepage(FormView):
                     login(req,user)
                     return redirect("Customer")
             else:
+                messages.warning(req,"Something went Wrong")
                 return render(req,'Homepage.html',{"form":form_data})
         else:
+            messages.error(req,"Incorrect Password or Username")
             return render(req,'Homepage.html',{"form":form_data})
         
 class LogOut(View):

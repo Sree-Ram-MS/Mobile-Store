@@ -1,62 +1,86 @@
 {% extends 'nav.html' %}
 {% block nav %}
 {% load static %}
+
+{% if messages %}
+    {% for i in messages %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}  
+        <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+        <div class="alert alert-info alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+        <div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'css/userpage.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'css/card.css' %}" />
 
-<script>
-    $(document).ready(function() {
-      $('#quantity').change(function() {
-        var quantity = $(this).val();
-        var unitPrice = {{ product.mobile.Prize }};
-        var totalPrice = quantity * unitPrice;
-        $('#price').text(totalPrice.toFixed(2));
-      });
-    });
-</script>
 
-
-    <div class="container " style="margin-top:50px; m ">
-        <div class="row ">
-            <div class="col-md-7">
-                <div class="card-sl">
-                    <div class="card-image">
-                        <img
-                            src="{{ buy.Mobile_pic.url }}" />
-                    </div>
-
-                    <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
-                    <div class="card-heading">
-                       <strong><h2 class="card-title">{{ buy.Name }}</h2></strong>
-                       <h4 style="display: inline-block; float: right"><strong>₹{{ buy.Prize|floatformat:2 }}</strong></h4>
-                    </div>
+<div class="container " style="margin-top:50px;">
+  <div class="row ">
+    <div class="col-md-7">
+      <div class="card-sl">
+          <div class="card-image">
+            <img src="{{ buy.Mobile_pic.url }}" />
+          </div>
+            <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+              <div class="card-heading">
+                <strong><h2 class="card-title">{{ buy.Name }}</h2></strong>
+                <h4 style="display: inline-block; float: right"><strong>₹{{ buy.Prize|floatformat:2 }}</strong></h4>
+              </div>
                     <div class="card-text">
-                        <h5><strong>Delivery Address:{{user.address}}</h5>
-                            <select  name="AgeDropdown"  class="AgeDropdown" > 
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                            
-                            <input type="number" name="quantity" id="quantity" value="1">
-                            <p>Price: <span id="price">{{ buy.Prize }}</span></p>
-                            <form action="{% url 'BuyItem' buy.id %}" method="post">
-                                {% csrf_token %}
-                                <table class="table">
-                                  {{form.as_p}}
-                                  <tr>
-                                    <td>
-                                      <button class="btn btn-danger">submit</button>
-                                    </td>
-                                  </tr>
-                                </table>
-                  
-                              </form>
+                      <form action="{% url 'BuyItem' buy.id %}" method="post class="form-horizontal"">
+                        {% csrf_token %}
+                        <div class="form-group" style="padding: 25px;">
+                          <label class="control-label col-sm-2">City</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control py-2" name="{{ form.city.html_name }}"/>
+                          </div>
+                        </div>
+                        <div class="form-group" style="padding: 25px;">
+                          <label class="control-label col-sm-2">Post</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control py-2" name="{{ form.post.html_name }}"/>
+                          </div>
+                        </div>
+                        <div class="form-group" style="padding: 25px;">
+                          <label class="control-label col-sm-2">PIN Code</label>
+                          <div class="col-md-4">
+                            <input type="number" class="form-control py-2" name="{{ form.pin.html_name }}"/>
+                          </div>
+                          <label class="control-label col-sm-2">Quantity</label>
+                          <div class="col-md-4">
+                            <input type="number" class="form-control py-2" name="{{ form.quantity.html_name }}"/>
+                          </div>
+                        </div>
+                        <button class="card-button"><i class="fa fa-check">  </i>&nbsp;Place Order</button>
+                      </form>
                     </div>
-                    <a href="#" class="card-button "><i class="fa fa-bolt">  Place Order</i></a>
-                </div>
-            </div>
-        </div>  
-    </div>  
+      </div>
+    </div>
+  </div>  
+</div>  
+
+        
+    
 {% endblock nav %}

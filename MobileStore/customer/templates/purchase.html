@@ -1,6 +1,38 @@
 {% extends 'nav.html' %}
 {% block nav %}
 {% load static %}
+
+
+{% if messages %}
+    {% for i in messages %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}  
+        <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+        <div class="alert alert-info alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+        <div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'css/userpage.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'css/card.css' %}" />
@@ -8,7 +40,7 @@
     <div class="container" style="margin-top:50px; margin-left:25px">
         <div class="row">
             {% for item in order %}
-            <div class="col-md-7">
+            <div class="col-md-5">
                 <div class="card-sl">
                     <div class="card-image">
                         <img
@@ -20,19 +52,19 @@
                        <strong><h2 class="card-title">{{ item.mobile.Name }}</h2></strong>
                     </div>
                     <div class="card-text">
-                        <h6><strong>RAM:{{ item.mobile.RAM }}GB</strong></h6>
-                <h6><strong>ROM:{{ item.mobile.ROM }} GB</strong></h6>
-                <h6><strong>Processor:{{ item.mobile.Processer }}</strong></h6>
-                <h4 style="display: inline-block; float: right"><strong>₹{{ item.mobile.Prize|floatformat:2 }}</strong></h4>
-                <h6><strong>Camera:{{ item.mobile.Camera }}</strong></h6>
-                <h6><strong>Battery:{{ item.mobile.Battery }} Mah</strong></h6>
-                <br>
-                <br>
-                <h6><strong>Item Delivey at:{{ item.post }} {{ item.city }}</strong></h6>
-               
+                
+                        
+                        
+                        <h4 style="display: inline-block; float: right" id="price"><strong>₹{{ item.mobile.Prize|floatformat:2 }}</strong></h4>
+                        <h6><strong>Item Delivey at:{{ item.post }} - {{ item.city }}</strong></h6>
+                        <h6 id="quantity"><strong>Quantity : {{ item.quantity }}</strong></h6>
                     </div>
                 </div>
             </div>
             {% endfor item in order %}
         </div>  
+
+        
 {% endblock nav %}
+
+

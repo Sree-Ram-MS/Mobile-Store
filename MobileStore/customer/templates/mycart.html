@@ -1,6 +1,36 @@
 {% extends 'nav.html' %}
 {% block nav %}
 {% load static %}
+
+{% if messages %}
+    {% for i in messages %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}  
+        <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+        <div class="alert alert-info alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+        {% if i.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+        <div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{i}}
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/userpage.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'css/quantity.css' %}" />
 <link rel="stylesheet"  href="{% static 'js/quantity.js' %}" />
@@ -20,7 +50,7 @@
                 <a href="{% url 'DelCart' product.id %}">
                     <button class="btn col-sm-5 col-sm-offset-1 btn-lg" style="background-color:#ff0000; color:#fff;font-size:1em; border-radius:12px;"><i class="glyphicon glyphicon-remove" style="font-size:1.2em;"></i>  REMOVE FROM CART</button>
                 </a>
-                <a href="{% url 'Buy' product.id %}" >
+                <a href="{% url 'Buy' product.mobile.id %}" >
                 <button class="btn col-sm-4 col-sm-offset-1 btn-lg " style="background-color:#fb641b; color:#fff;font-size:1em;"><i class="glyphicon glyphicon-tag" style="font-size:1.2em;"> </i>  BUY NOW</button>
                 </a>
               

@@ -6,6 +6,9 @@ class RegForm(UserCreationForm):
     class Meta:
         model=CustUser
         fields=["first_name","last_name","email","phone","address","image","username","usertype","password1","password2"]
+        help_texts={
+            'username':None
+        }
 
 class LogForm(AuthenticationForm):
     username=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))

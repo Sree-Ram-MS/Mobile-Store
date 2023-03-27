@@ -6,7 +6,7 @@ from store.models import Products
 from .models import *
 from .forms import *
 from django.urls import reverse_lazy
-
+from django.contrib import messages
 
 
 # Create your views here.
@@ -39,14 +39,19 @@ def addcart(request,*args,**kwargs):
     id=kwargs.get("pid")
     mobile=Products.objects.get(id=id)
     user=request.user
-
-    Cart.objects.create(mobile=mobile,user=user,status="carted")
-    return redirect('Customer')
+    if Cart.objects.filter(mobile=mobile,status="carted",user=request.user):
+        messages.warning(request,"Alredy Added in Cart")
+        return redirect('Customer')
+    else:
+        Cart.objects.create(mobile=mobile,user=user,status="carted")
+        messages.success(request,"Added to Cart")
+        return redirect('Customer')
 
 def delcart(request,*args,**kwargs):
     id=kwargs.get("pid")
     user=request.user
     Cart.objects.filter(id=id).delete()
+    messages.error(request,"Item Removed form cart")
     return redirect('MyCart')
 
 def addreview(request,*args,**kwargs):
@@ -82,6 +87,8 @@ class BuyNow(TemplateView):
         context["form"]=PurchaseForm()
         return context
     
+
+    
 def buyitem(request,*args,**kwargs):
     id=kwargs.get("pid")
     mobile=Products.objects.get(id=id)
@@ -91,7 +98,5 @@ def buyitem(request,*args,**kwargs):
     pin=request.POST.get('pin')
     quantity=request.POST.get('quantity')
     Purchase.objects.create(city=city,post=post,pin=pin,quantity=quantity,mobile=mobile,user=user)
-    ucart=Cart.objects.get(mobile=id)
-    ucart.status="purchased"
-    ucart.save()
+    messages.success(request,"Order has been placed")
     return redirect('Customer')
