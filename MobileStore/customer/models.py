@@ -12,6 +12,10 @@ class Cart(models.Model):
     )
     status=models.CharField(max_length=100,choices=options,default="carted")
 
+def __str__(self):
+    return self.name
+
+
 class Review(models.Model):
     comment=models.CharField(max_length=200)
     datetime=models.DateTimeField(auto_now_add=True)

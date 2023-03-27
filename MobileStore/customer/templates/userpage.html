@@ -2,10 +2,11 @@
 {% block nav %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/userpage.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/cmt.css' %}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="row">
-  {% for i in cart %}
-      {% for product in products %}
+  {% for product in products %}
         <div class="col-lg-4">
             <img class="thumbnail" src="{{ product.Mobile_pic.url }}" width="400px" height=>
             <div class="box-element product">
@@ -16,25 +17,55 @@
                 <h4 style="display: inline-block; float: right"><strong>₹{{ product.Prize|floatformat:2 }}</strong></h4>
                 <h6><strong>Camera:{{ product.Camera }}</strong></h6>
                 <h6><strong>Battery:{{ product.Battery }} Mah</strong></h6>
-               {{ product.id }}
-               
-               {{ i.mobile.id }}
 
-               
-                {% if product.id == i.mobile.id  %}
-                <button class="btn  col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#ff9f00; color:#fff;font-size:1em;"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;ADDED TO CART</button>
+
+
+
+
+                    <div class="d-flex justify-content-center row">
+                        <div class="col-md-8">
+                            <div class="d-flex flex-column comment-section" id="myGroup">
+                                <div class="bg-white p-2">
+                                    <div class="d-flex flex-row user-info"><img class="rounded-circle" src="{{product.user.image.url}}" width="40">
+                                        <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">Marry Andrews</span><span class="date text-black-50">Shared publicly - Jan 2020</span></div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-2">
+                                    <div class="d-flex flex-row fs-12">
+                                        <div class="like p-2 cursor action-collapse" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-1" href="#p{{ product.id}}"><i class="fa fa-commenting-o"></i><span class="ml-1">Review</span></div>
+                                    </div>
+                                </div>
+                                <div id="p{{product.id}}" class="bg-light p-2 collapse" data-parent="#myGroup">
+                                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="{{product.user.image.url}}" width="40"><textarea class="form-control ml-1 shadow-none textarea" width="100%"></textarea></div>
+                                    <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="button">Post Review</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                           
+
+
+                {% if product.id == mobile_id  %}
+                <button class="btn  col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#ff9f00; color:#fff;font-size:1em;"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;ADDED </button>
                 {% else %}
                 <a href="{% url 'AddCart' product.id %}" >
                   <button class="btn  col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#ff9f00; color:#fff;font-size:1em;"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;ADD TO CART</button>
                 </a>
                 {% endif %}
+                
+                
+                
                 <a href="{% url 'Buy' product.id %}" >
                 <button class="btn col-sm-4 col-sm-offset-1 btn-lg" style="background-color:#fb641b; color:#fff;font-size:1em;"><i class="fa fa-bolt" aria-hidden="true" style="font-size:1.2em;"></i> BUY NOW</button>
                 </a>
             </div>
         </div>
       {% endfor product in products %}
-      {% endfor %}
     </div>
 
 
