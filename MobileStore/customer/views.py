@@ -7,10 +7,22 @@ from .models import *
 from .forms import *
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.utils.decorators import method_decorator
+
+
+#==== Decorator ====#
+def signin_required(fn):
+    def wrapper(req,*args,**kwargs):
+        if req.user.is_authenticated:
+            return fn(req,*args,**kwargs)
+        else:
+            return redirect ("Homepage")
+    return wrapper
 
 
 # Create your views here.
 # Home page for customer
+@method_decorator(signin_required,name='dispatch')
 class CustHome(TemplateView):
     template_name="userpage.html"
     def get_context_data(self, **kwargs):
@@ -22,12 +34,12 @@ class CustHome(TemplateView):
         context['pst']=Purchase.objects.filter(user=self.request.user)
         return context
     
-
+@method_decorator(signin_required,name='dispatch')
 class CProfile(TemplateView):
     template_name="cprofile.html"
 
 # My cart section
-
+@method_decorator(signin_required,name='dispatch')
 class MyCart(TemplateView):
     template_name='mycart.html'
     def get_context_data(self, **kwargs):
@@ -35,6 +47,7 @@ class MyCart(TemplateView):
         context["products"]=Cart.objects.filter(user=self.request.user)
         return context
     
+
 def addcart(request,*args,**kwargs):
     id=kwargs.get("pid")
     mobile=Products.objects.get(id=id)

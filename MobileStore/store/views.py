@@ -3,11 +3,23 @@ from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView
 from .models import Products
 from .forms import *
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+
+
+#==== Decorator ====#
+def signin_required(fn):
+    def wrapper(req,*args,**kwargs):
+        if req.user.is_authenticated:
+            return fn(req,*args,**kwargs)
+        else:
+            return redirect ("Homepage")
+    return wrapper
 
 
 # Create your views here.
 
 # Home Page
+@method_decorator(signin_required,name='dispatch')
 class DealerHome(TemplateView):
     template_name="dealerpage.html"
     def get_context_data(self, **kwargs):
