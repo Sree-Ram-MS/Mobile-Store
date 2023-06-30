@@ -1,4 +1,4 @@
-# Mobile-Store
+# PC-Store
 
 View Deployment
 http://sreeramms.pythonanywhere.com/
