@@ -1,6 +1,6 @@
 # Mobile-Store
 
-deployed on PythonAnyWhere
+View Deployment
 http://sreeramms.pythonanywhere.com/
 
 Mobile Store:
